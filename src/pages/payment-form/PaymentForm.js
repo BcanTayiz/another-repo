@@ -18,14 +18,17 @@ const checkCreditCard = (cardNumber,cardEndDateMonthYear,cvv,cardFullName,cardSt
     let con2 = false
     let con3 = false
     let con4 = false
-    con4 = false
-    console.log(cardNumber.trim())
+    
     try{
+        console.log(cardNumber.trim())
+        console.log(cardNumber,cardEndDateMonthYear,cvv,cardFullName,cardStart, "given parameters")
         if(Number(cardNumber.replace(/\s/g,'')) && (cardNumber.replace(/\s/g,'').length == 16) 
         && (cardNumber.replace(/\s/g,'')[0] == cardStart))  {
             con1 = true
-        }else{
             
+        }else{
+            console.log((cardNumber.replace(/\s/g,'').length))
+            console.log((cardNumber.replace(/\s/g,'')[0] ))
         }
         let date = cardEndDateMonthYear.split('/')
         console.log(date)
@@ -62,6 +65,7 @@ const checkCreditCard = (cardNumber,cardEndDateMonthYear,cvv,cardFullName,cardSt
             if(!isLetter(fullname[i])){
                 con4 = false
             }else{
+                con4 = true
                 i++
             }
         }
@@ -70,6 +74,7 @@ const checkCreditCard = (cardNumber,cardEndDateMonthYear,cvv,cardFullName,cardSt
     }catch(err){
         console.log(err)
         console.log(con1,con2,con3,con4)
+        //alert('Please Enter a correct card')
         return false
     }
 
@@ -86,6 +91,8 @@ const checkCreditCard = (cardNumber,cardEndDateMonthYear,cvv,cardFullName,cardSt
 export default function PaymentForm() {
 
     const {user} = useAuthContext()
+
+    console.log(user)
 
     const {documents:payments } = useCollection('payments',['uid','==',user.uid])
 
@@ -152,27 +159,27 @@ export default function PaymentForm() {
     
 
   return (
-    <div className="container mt-2">
+    <div className="container-xxl mt-2">
     <div className="row">
         <div className={styles.cardContainer} >
             <div className="card p-3" onClick={() => setCardNumberSpec(4)}>
                 <div className="img-box"> <img className={styles.img} src="https://www.freepnglogos.com/uploads/visa-logo-download-png-21.png" alt=""/> </div>
                 <div className="number"> <label className="fw-bold" htmlFor="">**** **** **** 1060</label> </div>
-                <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>Kumar</span></small> </div>
+                <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>{user.email}</span></small> </div>
             </div>
         </div>
         <div className={styles.cardContainer} onClick={() => setCardNumberSpec(5)}>
             <div className="card p-3">
                 <div className="img-box"> <img className={styles.img} src="https://www.freepnglogos.com/uploads/mastercard-png/file-mastercard-logo-svg-wikimedia-commons-4.png" alt=""/> </div>
                 <div className="number"> <label className="fw-bold">**** **** **** 1060</label> </div>
-                <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>Kumar</span></small> </div>
+                <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>{user.email}</span></small> </div>
             </div>
         </div>
         <div className={styles.cardContainer} onClick={() => setCardNumberSpec(6)}>
             <div className="card p-3">
                 <div className="img-box"> <img className={styles.img} src="https://www.freepnglogos.com/uploads/discover-png-logo/credit-cards-discover-png-logo-4.png" alt="" /> </div>
                 <div className="number"> <label className="fw-bold">**** **** **** 1060</label> </div>
-                <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>Kumar</span></small> </div>
+                <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>{user.email}</span></small> </div>
             </div>
         </div>
         <h4>Selected Card: {cardNumberSpec === 4 ? 'Visa' : cardNumberSpec === 5 ? 'Master' : 'Discover'}</h4>
