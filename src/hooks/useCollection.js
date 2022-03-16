@@ -27,7 +27,7 @@ export const useCollection = (c,_q) => {
         })
 
         return () => {
-            unsub(9)
+            unsub()
         }
         
     }, [c,q]);

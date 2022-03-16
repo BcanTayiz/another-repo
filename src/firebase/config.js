@@ -3,12 +3,12 @@ import {getFirestore} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAMc4yImchYasLtcHN4T4r3tOS5M_meUVA",
-  authDomain: "reading-list-ninja.firebaseapp.com",
-  projectId: "reading-list-ninja",
-  storageBucket: "reading-list-ninja.appspot.com",
-  messagingSenderId: "559871725441",
-  appId: "1:559871725441:web:b66e2b1145157915e7a280"
+  apiKey: "AIzaSyAgxZCAZd0TurCEPFL6GRyloDjvZoEVJxc",
+  authDomain: "react-payments-case.firebaseapp.com",
+  projectId: "react-payments-case",
+  storageBucket: "react-payments-case.appspot.com",
+  messagingSenderId: "806770980165",
+  appId: "1:806770980165:web:37f0b4f57fa67eae38fa2c"
 };
 
 // Initialize Firebase

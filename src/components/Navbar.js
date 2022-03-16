@@ -9,11 +9,12 @@ export default function Navbar() {
 
   return (
     <nav>
-      <h1>My Reading List</h1>
+      <h1>Payment List</h1>
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/login">Login</Link></li>
         <li><Link to="/signup">Signup</Link></li>
+        <li><Link to="/payments">Payments</Link></li>
         <li onClick={logout}>Logout</li>
       </ul>
     </nav>

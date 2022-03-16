@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import PaymentForm from './pages/payment-form/PaymentForm'
 
 function App() {
   const {user,authIsReady} = useAuthContext()
@@ -27,6 +28,10 @@ function App() {
           <Route path="/login">
           {!user && <Login />}
           {user && <Redirect to='/'/>}
+          </Route>
+          <Route path="/payments">
+          {!user && <Redirect to='/login'/>}
+          {user && <PaymentForm />}
           </Route>
         </Routes>
       </Router>

@@ -1,0 +1,26 @@
+.img {
+  max-width: "100%";
+  max-height: "100%";
+  width: 150px;
+  height: 100px;
+}
+
+.container {
+  margin-top: 4rem !important;
+  background-color: aliceblue !important;
+}
+
+.cardContainer::after {
+  background: rgb(228, 222, 222) !important;
+  cursor: pointer;
+  background-color: black;
+  border: 10px solid black !important;
+}
+
+.cardContainer::before {
+  background: rgb(221, 131, 131);
+}
+
+.cardContainer::after {
+  background: rgb(221, 131, 131);
+}
