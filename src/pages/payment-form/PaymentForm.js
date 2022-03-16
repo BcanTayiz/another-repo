@@ -12,7 +12,7 @@ function isLetter(str) {
     return str.length === 1 && str.match(/[a-z]/i);
   }
 
-
+// Credit card synthax verification function
 const checkCreditCard = (cardNumber,cardEndDateMonthYear,cvv,cardFullName,cardStart) => {
     let con1 = false
     let con2 = false
@@ -91,7 +91,7 @@ export default function PaymentForm() {
 
     let {documents:purchases } = useCollection('creditCard',['uid','==',user.uid])
     
-
+    // firebase pull data as collections from data base
     
 
     let totalPrice = 0
@@ -103,18 +103,15 @@ export default function PaymentForm() {
 
     const now = new Date();
 
-    let carStartNumber = 0
+    const [cardNumberSpec,setCardNumberSpec] = useState(0)
 
-    const startNumberSet = (e) => {
-        carStartNumber = e
-    }
 
     const [cardNumber, setCardNumber] = useState('')
     const [cardEndDateMonthYear, setCardEndDateMonthYear] = useState('')
     const [cvv,setCVV] = useState('')
     const [cardFullName,setCardFullName] = useState('')
 
-    
+    // you can see the variables for credit card
 
     
 
@@ -123,7 +120,7 @@ export default function PaymentForm() {
         console.log(cardNumber,cardEndDateMonthYear,cvv,cardFullName)
         console.log(purchases,"payment form documents")
 
-    if(checkCreditCard(cardNumber,cardEndDateMonthYear,cvv,cardFullName,carStartNumber)){
+    if(checkCreditCard(cardNumber,cardEndDateMonthYear,cvv,cardFullName,cardNumberSpec)){
         const ref = collection(db,'creditCard')
         await addDoc(ref,{
             fullname:cardFullName,
@@ -155,29 +152,31 @@ export default function PaymentForm() {
     
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-2">
     <div className="row">
         <div className={styles.cardContainer} >
-            <div className="card p-3" onClick={startNumberSet(4)}>
+            <div className="card p-3" onClick={() => setCardNumberSpec(4)}>
                 <div className="img-box"> <img className={styles.img} src="https://www.freepnglogos.com/uploads/visa-logo-download-png-21.png" alt=""/> </div>
                 <div className="number"> <label className="fw-bold" htmlFor="">**** **** **** 1060</label> </div>
                 <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>Kumar</span></small> </div>
             </div>
         </div>
-        <div className={styles.cardContainer} onClick={startNumberSet(5)}>
+        <div className={styles.cardContainer} onClick={() => setCardNumberSpec(5)}>
             <div className="card p-3">
                 <div className="img-box"> <img className={styles.img} src="https://www.freepnglogos.com/uploads/mastercard-png/file-mastercard-logo-svg-wikimedia-commons-4.png" alt=""/> </div>
                 <div className="number"> <label className="fw-bold">**** **** **** 1060</label> </div>
                 <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>Kumar</span></small> </div>
             </div>
         </div>
-        <div className={styles.cardContainer} onClick={startNumberSet(6)}>
+        <div className={styles.cardContainer} onClick={() => setCardNumberSpec(6)}>
             <div className="card p-3">
                 <div className="img-box"> <img className={styles.img} src="https://www.freepnglogos.com/uploads/discover-png-logo/credit-cards-discover-png-logo-4.png" alt="" /> </div>
                 <div className="number"> <label className="fw-bold">**** **** **** 1060</label> </div>
                 <div className="d-flex align-items-center justify-content-between"> <small><span className="fw-bold">Expiry date:</span><span>10/16</span></small> <small><span className="fw-bold">Name:</span><span>Kumar</span></small> </div>
             </div>
         </div>
+        <h4>Selected Card: {cardNumberSpec === 4 ? 'Visa' : cardNumberSpec === 5 ? 'Master' : 'Discover'}</h4>
+
         <div className="col-12 mt-4">
             <div className="card p-3">
                 <p className="mb-0 fw-bold h4">Payment Methods</p>
